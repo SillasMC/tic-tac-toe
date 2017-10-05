@@ -19,7 +19,9 @@ body{
 	background-image:		url("https://cdn.pixabay.com/photo/2013/07/12/14/42/education-148605_960_720.png");
 	background-color:		#FFF6D5;
 	background-repeat:		no-repeat;
-	background-position:	-55px;
+	background-position:	top -50px left -55px;
+	color:					#0a1128;
+	font-family:			'Merienda One', cursive;
 }
 .code-author{
 	text-align:		center;
@@ -27,11 +29,15 @@ body{
 	font-family:	"Times New Roman", Times, serif;
 	font-size:		1em;
 }
-.board-text{
+.board-top{
+	margin:			0;
 	margin-top:		10px;
-	font-family:	'Merienda One', cursive;
 	font-size:		2.25em;
-	color:			#0a1128;
+}
+.board-text{
+	margin:			0;
+	margin-top:		5px;
+	font-size:		2.25em;
 }
 .choose-link{
 	color:		inherit;
