@@ -1,0 +1,38 @@
+body{
+	background-color:	#c19553;
+}
+.main-div {
+	float:			center;
+	text-align:		center;
+}
+.board{
+	display:				block;
+	margin:					auto;
+	margin-top:				100px;
+	width:					450px;
+	height:					450px;
+	border-radius:			7%;
+	border-style:			solid;
+	border-color:			#273333;
+	border-width:	 		2px;
+	box-shadow:				0 15px 22px 0 rgba(0,0,0,0.2), 0 15px 25px 0 rgba(0,0,0,0.19);
+	background-image:		url("https://cdn.pixabay.com/photo/2013/07/12/14/42/education-148605_960_720.png");
+	background-color:		#FFF6D5;
+	background-repeat:		no-repeat;
+	background-position:	-55px;
+}
+.code-author{
+	text-align:		center;
+	margin-top:		40px;
+	font-family:	"Times New Roman", Times, serif;
+	font-size:		1em;
+}
+.board-text{
+	margin-top:		10px;
+	font-family:	'Merienda One', cursive;
+	font-size:		2.25em;
+	color:			#0a1128;
+}
+.choose-link{
+	color:		inherit;
+}
