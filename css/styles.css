@@ -42,3 +42,57 @@ body{
 .choose-link{
 	color:		inherit;
 }
+.center-block{
+	display:		block;
+	margin:			auto;
+	margin-top:		50px;
+	width:			350px;
+	height:			350px;
+}
+.grid-sector{
+	margin:			0;
+	padding:		0;
+	font-size:		5em;
+	height:			115px;
+	border-color:	#0a1128;
+	border-width:	2px;
+}
+.grid-00{
+	border-bottom:	solid;
+	border-right:	solid;
+}
+.grid-01{
+	border-bottom:	solid;
+	border-left:	solid;
+	border-right:	solid;
+}
+.grid-02{
+	border-bottom:	solid;
+	border-left:	solid;
+}
+.grid-10{
+	border-top:		solid;
+	border-bottom:	solid;
+	border-right:	solid;
+}
+.grid-11{
+	border:		solid;
+}
+.grid-12{
+	border-bottom:	solid;
+	border-left:	solid;
+	border-top:		solid;
+}
+.grid-20{
+	border-top:		solid;
+	border-right:	solid;
+}
+.grid-21{
+	border-top:		solid;
+	border-left:	solid;
+	border-right:	solid;
+}
+.grid-22{
+	border-top:		solid;
+	border-left:	solid;
+}

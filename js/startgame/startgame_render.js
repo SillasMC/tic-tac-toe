@@ -1,5 +1,7 @@
 // Render the screen with the beginning of the game
-function startGame_Render(board) {
+function startGame_Render() {
+
+	let titleSection = $("#section-title-id");
 
 	let paragraphQuestion = $("<p>").addClass("board-top")
 							.text("Choose your mark:");
@@ -17,8 +19,8 @@ function startGame_Render(board) {
 							.append(' or ')
 							.append(linkO);
 
-	board.fadeOut("fast", function () {
-		board.empty().append(paragraphQuestion).append(paragraphChoice).fadeIn("slow");
+	titleSection.fadeOut("fast", function () {
+		titleSection.empty().append(paragraphQuestion).append(paragraphChoice).fadeIn("slow");
 	});
 
 }
