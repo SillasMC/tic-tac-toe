@@ -2,6 +2,8 @@
 function startGame_Render() {
 
 	let titleSection = $("#section-title-id");
+	let gridSection = $("#section-grid-id");
+	let functionSection = $("#section-function-id");
 
 	let paragraphQuestion = $("<p>").addClass("board-top")
 							.text("Choose your mark:");
@@ -21,6 +23,14 @@ function startGame_Render() {
 
 	titleSection.fadeOut("fast", function () {
 		titleSection.empty().append(paragraphQuestion).append(paragraphChoice).fadeIn("slow");
+	});
+
+	gridSection.fadeOut("fast", function () {
+		gridSection.empty();
+	});
+
+	functionSection.fadeOut("fast", function () {
+		functionSection.empty();
 	});
 
 }

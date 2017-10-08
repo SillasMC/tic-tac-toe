@@ -10,4 +10,9 @@ $(document).ready(function() {
 
 		drawGrid_Render(playersChoice);
 	});
+
+	$(document).on("click", "#link-reset-id", function () {
+		startGame_Render();
+	});
+
 });
