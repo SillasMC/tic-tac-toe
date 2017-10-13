@@ -4,6 +4,7 @@ $(document).ready(function() {
 	let playersChoice;
 	let playerMoveFirst = Math.random() >= 0.5;
 	let isPlayerTurn = playerMoveFirst;
+	let timeOut;
 
 	startGame_Render();
 
@@ -12,7 +13,7 @@ $(document).ready(function() {
 
 		drawGrid_Render(isPlayerTurn);
 
-		let timeOut = setTimeOut(computerMove, 1000, isPlayerTurn);
+		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
 	});
 
 	$(document).on("click", "#link-reset-id", function () {
@@ -27,7 +28,20 @@ $(document).ready(function() {
 			playerMove("#" + this.id, playersChoice);
 			isPlayerTurn = !isPlayerTurn;
 			matchTurn(isPlayerTurn);
-			let timeOut = setTimeOut(computerMove, 1000, isPlayerTurn);
+
+			clearTimeout(timeOut);
+			timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
 		}
 	});
+
+	function computerMove (isPlayerTurnLocal, playersChoiceLocal) {
+		if (!isPlayerTurnLocal) {
+			computerChoice(isPlayerTurnLocal, playersChoiceLocal);
+
+			// End of computer's turn
+			isPlayerTurn = !isPlayerTurn;
+			matchTurn(isPlayerTurn);
+		}
+	}
+
 });
