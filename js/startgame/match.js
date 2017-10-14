@@ -16,11 +16,14 @@ function playerMove (sectorID, playersChoice) {
 }
 
 // Make the computer's movement
-function computerChoice (isPlayerTurn, playersChoice) {
+function computerChoice (playersChoice) {
 	let computerMark = defineComputerMark(playersChoice);
 	let grid = getGrid();
 
-	// TODO AI chooses best move
+	// FIXME Make the computer unbeatable
+	var move = randomComputerMove(grid);
+
+	$("#grid-" + move.x + move.y + "-id").text(computerMark);
 }
 
 // Return the grid of the game filled with the movements
@@ -46,4 +49,8 @@ function defineComputerMark (playersChoice) {
 	} else {
 		return 'x';
 	}
+}
+
+function isMatchOver (playersChoice) {
+	return false;
 }

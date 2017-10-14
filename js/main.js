@@ -30,17 +30,24 @@ $(document).ready(function() {
 			matchTurn(isPlayerTurn);
 
 			clearTimeout(timeOut);
-			timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
+			if (!isMatchOver(playersChoice))
+				timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
+			else
+				endMatch();
 		}
 	});
 
 	function computerMove (isPlayerTurnLocal, playersChoiceLocal) {
 		if (!isPlayerTurnLocal) {
-			computerChoice(isPlayerTurnLocal, playersChoiceLocal);
+			computerChoice(playersChoiceLocal);
 
 			// End of computer's turn
 			isPlayerTurn = !isPlayerTurn;
-			matchTurn(isPlayerTurn);
+			if (!isMatchOver(playersChoice))
+				matchTurn(isPlayerTurn);
+			else
+				endMatch();
+
 		}
 	}
 
