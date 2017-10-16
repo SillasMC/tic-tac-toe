@@ -51,6 +51,28 @@ function defineComputerMark (playersChoice) {
 	}
 }
 
-function isMatchOver (playersChoice) {
-	return false;
+function matchWinner () {
+	var grid = getGrid();
+
+	for (let i = 0; i < 3; i++) {
+		let line = grid[i].join('');
+		if (line === 'xxx' || line === 'ooo') {
+			return grid[i][0];
+		}
+		//TODO Check for other victories
+		//for (let j = 0; j < 3; i++) {
+
+		//}
+	}
+
+	//TODO Check for draw game
+
+
+	return;
+}
+
+function changeScore (winnerID) {
+	var scoreTag = $("#" + winnerID + "-score-id");
+	var score = scoreTag.text();
+	scoreTag.text(Number(score) + 1);
 }

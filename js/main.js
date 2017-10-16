@@ -30,10 +30,13 @@ $(document).ready(function() {
 			matchTurn(isPlayerTurn);
 
 			clearTimeout(timeOut);
-			if (!isMatchOver(playersChoice))
+
+			let winner = matchWinner();
+			console.log(winner);
+			if (!winner)
 				timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
 			else
-				endMatch();
+				endMatch(winner, playersChoice);
 		}
 	});
 
@@ -43,12 +46,39 @@ $(document).ready(function() {
 
 			// End of computer's turn
 			isPlayerTurn = !isPlayerTurn;
-			if (!isMatchOver(playersChoice))
+			let winner = matchWinner();
+			if (!winner)
 				matchTurn(isPlayerTurn);
 			else
-				endMatch();
+				endMatch(winner, playersChoice);
 
 		}
+	}
+
+	function endMatch (winner, playersChoice) {
+		let timeOut;
+
+		if (winner === playersChoice) {
+			changeScore("player");
+			timeOut = setTimeout(() => { endGame("Player"); }, 500);
+		}
+		else {
+			changeScore("computer");
+			timeOut = setTimeout(() => { endGame("Computer"); }, 500);
+		}
+	}
+
+	function endGame (winner) {
+		alert(winner + " Win!");
+
+		playerMoveFirst = !playerMoveFirst;
+		isPlayerTurn = playerMoveFirst;
+
+		let gridSection = $("#section-grid-id");
+		drawGrid(gridSection);
+
+		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 2000);
+
 	}
 
 });

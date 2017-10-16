@@ -5,6 +5,16 @@ function drawGrid_Render (isPlayerTurn) {
 	let gridSection = $("#section-grid-id");
 	let functionSection = $("#section-function-id");
 
+	drawTitle(titleSection, isPlayerTurn);
+
+	drawGrid(gridSection);
+
+	drawFunction(functionSection);
+
+}
+
+// Draw score in title section
+function drawTitle (titleSection, isPlayerTurn) {
 	// Draw Score paragraph
 	let paragraphScore = $("<p>").addClass("board-top").html('<strong id="player-name-id">Player:</strong> <em id="player-score-id">0</em>  <strong id="computer-name-id">Computer:</strong> <em id="computer-score-id">0</em>');
 
@@ -12,10 +22,12 @@ function drawGrid_Render (isPlayerTurn) {
 		titleSection.empty().append(paragraphScore).fadeIn("slow");
 		matchTurn(isPlayerTurn);
 	});
+}
 
+// Draw grid in grid section
+function drawGrid (gridSection) {
 	gridSection.fadeOut("fast", function () {
 		gridSection.empty();
-
 		// Draw the grid
 		for (var i = 0; i < 3; i++) {
 			let divRow = $("<div>").addClass("row");
@@ -28,7 +40,10 @@ function drawGrid_Render (isPlayerTurn) {
 			gridSection.append(divRow).fadeIn("slow");
 		}
 	});
+}
 
+// Draw reset button in function section
+function drawFunction (functionSection) {
 	let linkReset = $("<a>").addClass("reset-link").attr("id", "link-reset-id").text('Reset');
 
 	let paragraphReset = $("<p>").addClass("function-text").append(linkReset);
