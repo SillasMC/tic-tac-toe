@@ -35,8 +35,12 @@ $(document).ready(function() {
 			console.log(winner);
 			if (!winner)
 				timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
-			else
-				endMatch(winner, playersChoice);
+			else {
+				if (winner === 'draw')
+					timeOut = setTimeout(() => { endMatchDraw(); }, 300);
+				else
+					endMatch(winner, playersChoice);
+			}
 		}
 	});
 
@@ -49,8 +53,12 @@ $(document).ready(function() {
 			let winner = matchWinner();
 			if (!winner)
 				matchTurn(isPlayerTurn);
-			else
-				endMatch(winner, playersChoice);
+			else {
+				if (winner === 'draw')
+					timeOut = setTimeout(() => { endMatchDraw(); }, 300);
+				else
+					endMatch(winner, playersChoice);
+			}
 
 		}
 	}
@@ -71,14 +79,23 @@ $(document).ready(function() {
 	function endGame (winner) {
 		alert(winner + " Win!");
 
+		prepareNextGame();
+	}
+
+	function prepareNextGame () {
 		playerMoveFirst = !playerMoveFirst;
 		isPlayerTurn = playerMoveFirst;
 
-		let gridSection = $("#section-grid-id");
+		var gridSection = $("#section-grid-id");
 		drawGrid(gridSection);
-
+		// FIXME Bug of who's the turn
 		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 2000);
+	}
 
+	function endMatchDraw () {
+		alert("Draw Game!");
+
+		prepareNextGame();
 	}
 
 });

@@ -124,9 +124,23 @@ function matchWinner () {
 		return grid[0][2];
 	}
 
-		//TODO Check for draw game
+	var emptySector = getEmptySector(grid);
+	if (emptySector < 0)
+		return 'draw';
 
 	return;
+}
+
+function getEmptySector (grid) {
+	for (let i = 0; i < grid.length; i++) {
+		let element = grid[i];
+		
+		let empty = element.indexOf("");
+		if (empty >= 0)
+			return empty;
+
+	}
+	return -1;
 }
 
 function changeScore (winnerID) {
