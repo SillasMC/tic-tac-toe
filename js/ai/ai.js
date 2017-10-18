@@ -1,3 +1,4 @@
+// Random a movement for computer
 function randomComputerMove (grid) {
 	var movement = {};
 	do {
@@ -14,7 +15,7 @@ function randomComputerMove (grid) {
 	return movement;
 }
 
-
+//Check if object is empty
 function isEmptyObject (obj) {
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
 }

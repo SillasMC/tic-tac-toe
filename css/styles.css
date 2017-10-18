@@ -118,3 +118,7 @@ a.fill-div {
 .match-turn{
 	color:		#a31621;
 }
+.mark-win{
+	border-color:	#0a1128;
+	color:			#a31621;
+}

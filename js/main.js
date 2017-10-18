@@ -8,14 +8,16 @@ $(document).ready(function() {
 
 	startGame_Render();
 
+	// Choose a mark
 	$(document).on("click", ".choose-link", function () {
 		playersChoice = $("#" + this.id).text();
 
 		drawGrid_Render(isPlayerTurn);
 
-		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
+		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 500);
 	});
 
+	// Reset the game
 	$(document).on("click", "#link-reset-id", function () {
 		startGame_Render();
 
@@ -23,6 +25,7 @@ $(document).ready(function() {
 		isPlayerTurn = playerMoveFirst;
 	});
 
+	// The players chooses a sector
 	$(document).on("click", ".grid-sector", function () {
 		if (isPlayerTurn) {
 			playerMove("#" + this.id, playersChoice);
@@ -34,16 +37,17 @@ $(document).ready(function() {
 			let winner = matchWinner();
 			console.log(winner);
 			if (!winner)
-				timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 1000);
+				timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 500);
 			else {
 				if (winner === 'draw')
-					timeOut = setTimeout(() => { endMatchDraw(); }, 300);
+					timeOut = setTimeout(() => { endMatchDraw(); }, 150);
 				else
 					endMatch(winner, playersChoice);
 			}
 		}
 	});
 
+	// Make computers movement
 	function computerMove (isPlayerTurnLocal, playersChoiceLocal) {
 		if (!isPlayerTurnLocal) {
 			computerChoice(playersChoiceLocal);
@@ -55,7 +59,7 @@ $(document).ready(function() {
 				matchTurn(isPlayerTurn);
 			else {
 				if (winner === 'draw')
-					timeOut = setTimeout(() => { endMatchDraw(); }, 300);
+					timeOut = setTimeout(() => { endMatchDraw(); }, 150);
 				else
 					endMatch(winner, playersChoice);
 			}
@@ -63,35 +67,40 @@ $(document).ready(function() {
 		}
 	}
 
+	// Check who winned the game
 	function endMatch (winner, playersChoice) {
 		let timeOut;
 
 		if (winner === playersChoice) {
 			changeScore("player");
-			timeOut = setTimeout(() => { endGame("Player"); }, 500);
+			timeOut = setTimeout(() => { endGame("Player"); }, 250);
 		}
 		else {
 			changeScore("computer");
-			timeOut = setTimeout(() => { endGame("Computer"); }, 500);
+			timeOut = setTimeout(() => { endGame("Computer"); }, 250);
 		}
 	}
 
+	// End the game with a victory
 	function endGame (winner) {
 		alert(winner + " Win!");
 
 		prepareNextGame();
 	}
 
+	// Prepare the grid for a new match
 	function prepareNextGame () {
 		playerMoveFirst = !playerMoveFirst;
 		isPlayerTurn = playerMoveFirst;
+		matchTurn(isPlayerTurn);
 
 		var gridSection = $("#section-grid-id");
 		drawGrid(gridSection);
-		// FIXME Bug of who's the turn
-		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 2000);
+
+		timeOut = setTimeout(() => { computerMove(isPlayerTurn, playersChoice); }, 750);
 	}
 
+	// End game with a draw
 	function endMatchDraw () {
 		alert("Draw Game!");
 

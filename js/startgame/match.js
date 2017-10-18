@@ -12,7 +12,7 @@ function matchTurn (isPlayerTurn) {
 
 // Draw the mark where the player marked
 function playerMove (sectorID, playersChoice) {
-	$(sectorID).text(playersChoice);//TODO Animate player choice
+	$(sectorID).text(playersChoice);
 }
 
 // Make the computer's movement
@@ -51,6 +51,7 @@ function defineComputerMark (playersChoice) {
 	}
 }
 
+// Check if there is a draw or if someone winned
 function matchWinner () {
 	var grid		= getGrid();
 	var winnerSeq	= {
@@ -79,7 +80,8 @@ function matchWinner () {
 			winnerSeq.j_begin	= 0;
 			winnerSeq.i_end		= i;
 			winnerSeq.j_end		= 2;
-			// TODO Turn red the winner position
+
+			turnRedWinnerComb(winnerSeq);
 
 			return grid[i][0];
 		}
@@ -91,7 +93,8 @@ function matchWinner () {
 			winnerSeq.j_begin	= i;
 			winnerSeq.i_end		= 2;
 			winnerSeq.j_end		= i;
-			// TODO Turn red the winner position
+
+			turnRedWinnerComb(winnerSeq);
 
 			return grid[0][i];
 		}
@@ -108,7 +111,8 @@ function matchWinner () {
 		winnerSeq.j_begin	= 0;
 		winnerSeq.i_end		= 2;
 		winnerSeq.j_end		= 2;
-		// TODO Turn red the winner position
+
+		turnRedWinnerComb(winnerSeq);
 
 		return grid[0][0];
 	}
@@ -119,7 +123,8 @@ function matchWinner () {
 		winnerSeq.j_begin	= 2;
 		winnerSeq.i_end		= 2;
 		winnerSeq.j_end		= 0;
-		// TODO Turn red the winner position
+
+		turnRedWinnerComb(winnerSeq);
 
 		return grid[0][2];
 	}
@@ -131,10 +136,11 @@ function matchWinner () {
 	return;
 }
 
+// Check if grid is completely filled
 function getEmptySector (grid) {
 	for (let i = 0; i < grid.length; i++) {
 		let element = grid[i];
-		
+
 		let empty = element.indexOf("");
 		if (empty >= 0)
 			return empty;
@@ -143,8 +149,23 @@ function getEmptySector (grid) {
 	return -1;
 }
 
+// Change Score of the game
 function changeScore (winnerID) {
 	var scoreTag = $("#" + winnerID + "-score-id");
 	var score = scoreTag.text();
 	scoreTag.text(Number(score) + 1);
+}
+
+// Turn red the combination of marks that have won
+function turnRedWinnerComb (winnerSeq) {
+	// First mark
+	$("#grid-" + winnerSeq.i_begin + winnerSeq.j_begin + "-id").addClass("mark-win");
+
+	// Middle mark
+	var i = (winnerSeq.i_begin + winnerSeq.i_end)/2;
+	var j = (winnerSeq.j_begin + winnerSeq.j_end)/2;
+	$("#grid-" + i + j + "-id").addClass("mark-win");
+
+	// Last mark
+	$("#grid-" + winnerSeq.i_end + winnerSeq.j_end + "-id").addClass("mark-win");
 }
